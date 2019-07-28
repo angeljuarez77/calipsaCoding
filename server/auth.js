@@ -1,11 +1,11 @@
 const JwtStrategy = require('passport-jwt').Strategy;
 const { ExtractJwt } = require('passport-jwt');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const { User } = require('./models');
 
-const SECRET = 'asldfkjfj';
+const SECRET = 'please dont tell';
 const sign = payload => jwt.sign(payload, SECRET);
 
 const opts = {
