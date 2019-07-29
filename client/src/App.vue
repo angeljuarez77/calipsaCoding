@@ -11,7 +11,12 @@ export default {
   name: 'app',
   components: {
     Welcome,
-  }
+  },
+  data () {
+    return {
+      jwt: '',
+    }
+  },
 }
 </script>
 
