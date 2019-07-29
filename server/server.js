@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
+const socket = require('socket.io');
 const { /* passport, */ sign } = require('./auth');
 const { User } = require('./models');
 
@@ -57,4 +58,10 @@ app.post('/login', async (req, res) => {
 });
 
 // eslint-disable-next-line no-console
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+const io = socket(server);
+
+io.on('connection', (socket) => {
+  console.log(socket.id);
+});
