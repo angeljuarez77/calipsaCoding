@@ -63,5 +63,8 @@ const server = app.listen(port, () => console.log(`Example app listening on port
 const io = socket(server);
 
 io.on('connection', (socket) => {
-  console.log(socket.id);
+  // eslint-disable-next-line no-console
+  socket.on('SEND_MESSAGE', (data) => {
+    io.emit('MESSAGE', data);
+  });
 });
