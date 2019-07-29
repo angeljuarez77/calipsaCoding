@@ -1,22 +1,32 @@
 <template>
   <div id="app">
-    <Welcome />
+    <LoggedIn v-if="jwt" :userName="user_name" />
+    <Welcome v-else @jwt-received="storeJWT" />
   </div>
 </template>
 
 <script>
 import Welcome from './components/Welcome.vue';
+import LoggedIn from './components/LoggedIn';
 
 export default {
   name: 'app',
   components: {
     Welcome,
+    LoggedIn
   },
   data () {
     return {
-      jwt: '',
+      jwt: null,
+      user_name: null,
     }
   },
+  methods: {
+    storeJWT(jwt, user_name){
+      this.jwt = jwt;
+      this.user_name = user_name;
+    },
+  }
 }
 </script>
 
