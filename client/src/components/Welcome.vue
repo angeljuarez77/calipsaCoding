@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import io from 'socket.io-client';
 import axios from 'axios';
 
 const BASE_URL = "http://localhost:3001";
@@ -45,22 +44,20 @@ export default {
         user_name: '',
         password: '',
       },
-      message: '',
-      messages: [],
-      socket: io('localhost:3001'),
     }
   },
   methods: {
-    sendMessage(e) {
-      e.preventDefault
-    },
     async handleLogInSubmit() {
       const res = await axios.post(`${BASE_URL}/login`, this.user); 
-      console.log(res.data);
+      if(res.data.token){
+        this.$emit('jwt-received', res.data.token, this.user.user_name);
+      };
     },
     async handleCreationSubmit() {
       const res = await axios.post(`${BASE_URL}/users`, this.newUser);
-      console.log(res.data);
+      if(res.data.token){
+        this.$emit('jwt-received', res.data.token, this.newUser.user_name);
+      };
     },
   },
 }
