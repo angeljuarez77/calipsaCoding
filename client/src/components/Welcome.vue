@@ -28,7 +28,7 @@
 </template>
 
 <script>
-const BASE_URL = "http://localhost:49160";
+const BASE_URL = "http://localhost:3001";
 import axios from 'axios';
 
 export default {
@@ -50,13 +50,13 @@ export default {
       const res = await axios.post(`${BASE_URL}/login`, this.user); 
       if(res.data.token){
         this.$emit('jwt-received', res.data.token, this.user.user_name);
-      };
+      }
     },
     async handleCreationSubmit() {
       const res = await axios.post(`${BASE_URL}/users`, this.newUser);
       if(res.data.token){
         this.$emit('jwt-received', res.data.token, this.newUser.user_name);
-      };
+      }
     },
   },
 }
