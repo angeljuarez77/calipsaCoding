@@ -16,6 +16,17 @@ app.use(cors());
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
+app.get('/users', async (req, res) => {
+  try {
+    const users = await User.findAll();
+    res.json({ users });
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log(e);
+    res.status(500).json({ msg: e.message });
+  }
+});
+
 app.post('/users', async (req, res) => {
   try {
     const user = await User.create(req.body);
@@ -63,8 +74,24 @@ const server = app.listen(port, () => console.log(`Example app listening on port
 const io = socket(server);
 
 io.on('connection', (socket) => {
-  // eslint-disable-next-line no-console
+  socket.join('main-room');
+
   socket.on('SEND_MESSAGE', (data) => {
-    io.emit('MESSAGE', data);
+    const newData = data;
+    newData.userSocketID = socket.id;
+    // eslint-disable-next-line no-console
+    console.log(newData);
+    io.emit('MESSAGE', newData);
   });
+});
+
+const nsp = io.of('/my-namespace');
+nsp.on('connection', (socket) => {
+  // eslint-disable-next-line no-console
+  console.log('connection to namespace made');
+});
+
+const mainRoom = io.of('main-room');
+mainRoom.on('connect', (socket) => {
+  
 });
