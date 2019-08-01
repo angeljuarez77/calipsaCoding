@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt');
 
 const SALT = 12;
 
-const sequelize = new Sequelize({
-  database: '20-questions',
+const sequelize = new Sequelize('practicedocker', 'practicedocker', 'practicedocker', {
+  // database: 'practicedocker',
   dialect: 'postgres',
   operatorsAliases: false,
   define: {
