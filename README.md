@@ -9,3 +9,11 @@ If you would like to start this repositories backend in your local computer then
 + if your user for postgres has a password then you will have to insert a "user" and "password" key:value pair inside of the new Sequelize({}) method inside of models.js
 
 + finally inside of the ./server directory then you will have to run ```npm run start```
+
+To start the front end you will have to
+
++ ```cd client```
+
++ ```npm i```
+
++ ```npm run serve```
