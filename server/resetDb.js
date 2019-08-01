@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const { sequelize } = require('./models');
 
 async function resetDb() {
@@ -11,4 +12,19 @@ async function resetDb() {
   }
 }
 
-resetDb();
+async function retry() {
+  let retries = 5;
+  while (retries) {
+    try {
+      // eslint-disable-next-line no-await-in-loop
+      await resetDb();
+    } catch (e) {
+      console.log(e);
+      retries -= 1;
+      // eslint-disable-next-line no-await-in-loop
+      await new Promise(res => setTimeout(res, 5000));
+    }
+  }
+}
+
+retry();

@@ -7,6 +7,10 @@ WORKDIR /usr/src/app
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
 COPY package*.json ./
+# COPY wait-for-it.sh /wait-for-it.sh
+# RUN chmod +x /wait-for-it.sh
+# COPY wait-for-postgres.sh ./
+# RUN chmod +x /wait-for-postgres.sh 
 
 RUN npm i
 # If you are building your code for production
@@ -15,5 +19,7 @@ RUN npm i
 # Bundle app source
 COPY . .
 
+RUN dockerize -wait tcp://db:3306 -timeout 60m
+
 # EXPOSE 3001
-CMD [ "node", "server.js" ]
+CMD [ "npm", "run", "start" ]
