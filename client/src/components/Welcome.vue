@@ -28,9 +28,8 @@
 </template>
 
 <script>
+const BASE_URL = "http://localhost:49160";
 import axios from 'axios';
-
-const BASE_URL = "http://localhost:3001";
 
 export default {
   name: 'Welcome',
