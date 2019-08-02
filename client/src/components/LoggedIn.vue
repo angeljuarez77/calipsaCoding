@@ -51,7 +51,7 @@ export default {
   mounted() {
     this.user = this.userName;
 
-    this.socket.on('welcome', data => console.log(data));
+    // this.socket.on('welcome', data => console.log(data));
 
     this.socket.on('MESSAGE', (data) => {
       this.messages = [...this.messages, data];

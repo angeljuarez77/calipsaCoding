@@ -8,9 +8,9 @@
 <script>
 import Welcome from './components/Welcome.vue';
 import LoggedIn from './components/LoggedIn';
-import axios from 'axios';
+// import axios from 'axios';
 
-const BASE_URL = "http://localhost:3001";
+// const BASE_URL = "http://localhost:3001";
 export default {
   name: 'app',
   components: {
@@ -28,10 +28,6 @@ export default {
       this.jwt = jwt;
       this.user_name = user_name;
     },
-  },
-  mounted() {
-    console.log('from mounted in App.vue component')
-    axios.get(BASE_URL).then(res => console.log(res.data)).catch(e => console.log(e));
   },
 }
 </script>
