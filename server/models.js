@@ -5,9 +5,7 @@ const bcrypt = require('bcrypt');
 const SALT = 12;
 
 const sequelize = new Sequelize({
-  username: 'username',
-  password: 'password',
-  database: 'database',
+  database: '20-questions',
   dialect: 'postgres',
   operatorsAliases: false,
   define: {
