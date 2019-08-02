@@ -20,7 +20,7 @@ async function retry() {
       // eslint-disable-next-line no-await-in-loop
       await resetDb();
     } catch (e) {
-      console.log(e, 'I came from the fucking error handler in reserDB.js');
+      console.log(e, 'sdf;alksjdfkjf');
       retries -= 1;
       // eslint-disable-next-line no-await-in-loop
       await new Promise(res => setTimeout(res, 5000));
