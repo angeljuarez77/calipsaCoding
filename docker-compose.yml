@@ -11,24 +11,25 @@ services:
     ports:
       - "5432:5432"
 
-  adminer: 
-    image: adminer
-    restart: always
-    ports: 
-      - "2020:2020"
+  # adminer: 
+  #   image: adminer
+  #   restart: always
+  #   ports: 
+  #     - "2020:2020"
   
   client:
     build: ./client
     ports: 
       - "8080:8080"
     depends_on: 
+      - postgres
       - server
 
   server:
     build: ./server
-    depends_on:
-      - postgres
-    links:
-      - postgres
+    # depends_on:
+    #   - postgres
+    # links:
+    #   - postgres
     ports: 
       - "3001:3001"
