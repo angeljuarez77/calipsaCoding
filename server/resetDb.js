@@ -13,7 +13,7 @@ async function resetDb() {
 }
 
 async function retry() {
-  console.log('this is some bullshit man');
+  console.log('I am from the inside of the retry function');
   let retries = 5;
   while (retries) {
     try {
